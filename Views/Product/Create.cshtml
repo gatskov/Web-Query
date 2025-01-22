@@ -1,0 +1,84 @@
+﻿@model WebQuery.Models.Product
+
+@{
+    ViewData["Title"] = "Регистрация нового Запроса";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@ViewData["Title"]</h2>
+<div>
+    <a asp-action="Index"> <input type="submit" value="Вернуться к списку" class="button2 btn-primary" /></a>
+</div>
+<h2></h2>
+
+
+<div class="row">
+    <div class="col-md-4 " style=" background-color:lightsteelblue">
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Вх_N" class="control-label"></label>
+        <input asp-for="Вх_N" class="form-control" style="background-color:lightyellow" />
+        <span asp-validation-for="Вх_N" class="text-danger"></span>
+    </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" style="background-color:lightyellow" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+    <div class="form-group">
+        <label asp-for="Заказчик" class="control-label"></label>
+                <input asp-for="Заказчик" class="form-control" style="background-color:lightyellow" />
+        <span asp-validation-for="Заказчик" class="text-danger"></span>
+    </div>
+            <div class="form-group">
+                <label asp-for="Предмет_запроса" class="control-label"></label>
+                <input asp-for="Предмет_запроса" class="form-control" style="background-color:lightyellow" />
+                <span asp-validation-for="Предмет_запроса" class="text-danger"></span>
+            </div>
+    
+            <div class="form-group">
+                <label asp-for="Объект" class="control-label"></label>
+                <input asp-for="Объект" class="form-control" style="background-color:lightyellow" />
+                <span asp-validation-for="Объект" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Примечание1" class="control-label"></label>
+                <input asp-for="Примечание1" class="form-control" style="background-color:lightyellow" />
+                <span asp-validation-for="Примечание1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="На_сервере" class="control-label"></label>
+                <input asp-for="На_сервере" class="form-control" style="background-color:lightyellow" />
+                <span asp-validation-for="На_сервере" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Реестр_ТКП" class="control-label"></label>
+                <input asp-for="Реестр_ТКП" class="form-control" style="background-color:lightyellow" />
+                <span asp-validation-for="Реестр_ТКП" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ответственный" class="control-label"></label>
+                <input asp-for="Ответственный" class="form-control" style="background-color:lightyellow" />
+                <span asp-validation-for="Ответственный" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Примечание2" class="control-label"></label>
+                <input asp-for="Примечание2" class="form-control" style="background-color:lightyellow" />
+                <span asp-validation-for="Примечание2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Статус" class="control-label"></label>
+                <input asp-for="Статус" class="form-control" style="background-color:lightyellow" />
+                <span asp-validation-for="Статус" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="status" class="control-label"></label>
+                <input asp-for="status" class="form-control" style="background-color:lightyellow" />
+                <span asp-validation-for="status" class="text-danger"></span>
+            </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+</div>
+</div>

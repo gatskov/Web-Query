@@ -1,0 +1,439 @@
+﻿@model IEnumerable<WebQuery.Models.Product>
+
+@{
+    ViewData["Title"] = "Query Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<a href="/Product/Create" class="btn btn-info">Новый Запрос</a>
+@* <link rel="stylesheet" href="\lib\font-awesome\css\font-awesome.min.css">
+ *@
+@* <link rel="stylesheet" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.min.css"> 
+ *@
+@* <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">*@
+@*  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.css">
+ *@
+
+
+@* ------------- *@
+@* <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.js" Datatables></script> *@
+@* ------------- *@
+@* <script type="text/javascript" src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> *@
+
+
+
+@* 
+<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+ *@
+
+@*  _______________ *@
+@* @* <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.0/css/jquery.dataTables.css"> *@
+@*  -------------- *@
+
+@* <script type="text/javascript" src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.js"></script> *@
+
+@* <script type="text/javascript" src="https://cdn.datatables.net/responsive/1.0.6/js/dataTables.responsive.js"></script> *@
+
+@* <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.css"> *@
+@* <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script> *@
+
+@* <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script> *@
+@* <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" crossorigin="anonymous"></script> *@
+
+
+
+<head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/start/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.css">
+
+
+    <style id="compiled-css" type="text/css">
+        bodi {
+            font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Verdana, Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #fff;
+        }
+
+    </style>
+</head>
+
+<div>
+
+
+    <table id="productTable" class="bodi" style=" background-color: burlywood; font-size: 70%">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Вх_N</th>
+                <th>Дата Запроса</th>
+                <th>Заказчик</th>
+                <th>Предмет_запроса</th>
+                <th>Объект</th>
+                <th>Примечание 1</th>
+                <th>Cервер</th>
+                <th>ТКП</th>
+                <th>Отв.</th>
+                <th>Примечание 2</th>
+                <th>Staus</th>
+                <th>Дней</th>
+                <th>Статус</th>
+                <th sstyle="width:15%">Ackshen</th>
+                <th>
+                    @*  <span style="margin-left:25px;">Status</span> 
+            <select id="status-1" class="status">
+                <option value="1" class="status">1</option>
+                <option value="2" class="status">2</option>
+            </select>  *@
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+           
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+    const { default: DataTable } = require("../../node_modules/datatables.net-dt/types/dataTables.dataTables");
+</script>
+
+@* <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+ *@
+@* 
+<link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+ *@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+@* <script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.dataTables.js"></script> *@
+
+@* <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script> *@
+@* <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-resizable/3.1.1/jquery-resizable.min.js"></script> *@
+
+@* <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script> *@
+@* 
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script> *@
+
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.2.1/js/jquery.dataTables.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"></script>
+<script src="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap5.css"></script>
+
+
+@* <script src="script.js"></script>
+ *@
+@section scripts {
+    <script type='text/javascript'>
+             $(document).ready(function () {
+             var tab = $('#productTable').DataTable({
+                        "pagingType": "full_numbers",
+                  'responsive': true,
+                      "paging": true,
+                  "select": true,
+              "order": [[0, "desc"]],
+               "processing": true,
+              "filter": true, //Search Box
+                  "stateSave": true,
+                  "contenteditable":true,
+                  "editable":true,
+                          "ajax": {
+                         "url": "/Product/GetAllProducts",
+                         "type": "GET",
+                         "datatype": "json"
+
+                     },
+               
+
+                 "columnDefs": [
+
+                               {
+                                "targets": 12, // тексе по центру
+                                "className": "text-center",
+                                "width": "4%"
+                               },
+                               //{
+                               //  "targets": 2,"render": function(data){return new Date(data).toLocaleDateString();}
+                               //}
+                               {
+                                   "targets": 11,// тексе по центру
+                                    "className": "text-center",
+                                    "width": "4%",
+                                    "render" : function(data)
+                                  {
+                                    if (data)
+                                    return '<span class="label label-danger">' + data + '</span>';
+                                    else return '<span class="label label-success" >' + data + '</span>';
+                                  }
+                                  }
+
+                 //                  {
+                 //                    "targets": 1,
+                 //                     "renger":
+                 //                   $('#productTable').on( 'dblclick', 'tr', function (data) {
+                 //  alert("Строка: "+$(this).closest('tr').index());
+                 // self.EditProdict( data.id);
+                 //                       })
+
+
+                 //                  }
+
+
+                              ],
+
+
+
+
+
+
+
+                     "columns": [
+
+                         { "data": "id" },
+                         {"data": "вх_N"},
+                         { "data": "date" },
+                         { "data": "заказчик" },
+                          { "data": "предмет_запроса"},
+                         { "data": "объект"},
+                         { "data": "примечание1"},
+                         { "data": "на_сервере",
+                                 "render": function ( data, type, row ) {
+                                return '<a href="File:///'+ data +'"><i class="fa fa-server fa-2x"  style="font-size:18px;  width: 88%;" ></i></a>';
+                            }
+                         },
+                         { "data": "реестр_ТКП",
+                           "render": function ( data, type, row ) {
+                               return '<a href="File:///'+ data +'"><i class="fa fa-server fa-2x "style="color: #28a745;font-size:18px;width: 88%;"></i></a>';
+                            }
+                         },
+                           { "data": "ответственный"},
+                       { "data": "примечание2"},
+
+                       { "data": null, //"status",
+                 //         "defaultContent": "<button class='btn btn-info' style='font-size:10px;height:20px;width:75%;' onclick='RefProduct(" + data.id + ")'>"+data.status+ " </button>",
+                          "render": function (data) {
+                          return "<button    class='btn btn-info' style=' display: inline-flex; align-items: center;  align-self: center;  font-size:10px; height:12px;/* width:45%; */ ' onclick='EditProduct( "+data.id +" )'>"+data.status+ " </button>";
+                      },
+                           "autoWidth": true
+                       },
+                  // "render" : function(data)
+                  // {
+
+
+                  //   if (data)
+                  //    return '<span class="label label-danger">' + data + '</span>';
+                  //    else return '<span class="label label-success" >' + data + '</span>';
+
+
+
+
+                       //         if (data ) {
+                       //    return  '<span class="label label-danger">' + data + '</span>'
+                       //        // if (row === undefined || row === null) { return'<span class="label label-danger">' + data + '</span>';
+                       // }else{
+                       //       return '<span class="label label-success" >' + data + '</span>' //"Closed"
+                       // }
+                  // },
+                 // "autoWidth": true
+           //  },
+
+                         { "data": "price",
+                             "render": function (data,type, row) {
+                                                var day = row.date;
+                                                var data = new Date(day);
+                                                var cdat = new Date();
+                                                var result = cdat - data;
+                                                var num = Math.round(result / 1000 / 60 / 60/ 24);
+                                                  if (num >= 1 && num <= 9) {
+                                                  return '<div style="background-color:greenyellow;">' + num +'</div>';
+                                              }
+                                                     if (num >= 10 && num <=19) {
+                                                   return '<div style="background-color: orange;">' + num +'</div>';
+                                              }
+                                                     if (num >= 19 && num <= 45){
+                                                     return '<div style="background-color: red;">' + num +'</div>';
+                                              }
+                                                   if (num >45) {
+                                                  return '<div style="background-color: #00AFFC;">' + num +'</div>';
+                                                 }else{
+                                                return num
+                                             }
+                              }
+                         },
+
+                         {
+
+
+
+
+
+                                 "data": "статус",
+
+                                //  "render": function (data, type, row) {
+                                //  return "<input type='text'  class='State'>";
+                                //  }
+
+                                //"defaultContent": "<button></button>"
+
+
+                                               //     "render": function (data, type, row, meta) {
+                                               //   var dropdown = '';
+                                               //       if (row != null) {
+                                               //             dropdown += '<select class="form-control" style="font-size: 9px; height: 25px; width: 88%; " >';
+                                               //     dropdown += '<option value="0">Не активен</option>';
+                                               //     dropdown += '<option value="1">В обработке</option>';
+                                               //     dropdown += '<option value="2">В работе</option>';
+                                               //     dropdown += '<option value="3">Выполнен</option>';
+                                               //     dropdown += '<option value="4">Закрыт</option>';
+                                               //     //dropdown += '<option value="WaitingToStart">Waiting To Start</option>';
+                                               //     dropdown += '</select>';
+                                               //   } else {
+                                               //     dropdown = '<select class="form-control"><option value="0">Select Status</option></select>';
+                                               //   }
+                                               //    return dropdown;
+                                               // }
+
+                           },
+
+                         {
+
+                             "data": null,
+                             "render": function (data, type, row) {
+                                           return "<button class='btn btn-info' onclick='EditProduct(" + data.id + ")'><i class='fa fa-pencil' class='btn btn-info' style='font-size:9px;height:6px;width:75%;' ></i></button> | <button class='btn btn-danger'onclick='DeleteProduct(" + data.id + ")'><i class='fa fa-trash-o' style='font-size:9px;height:6px;width:75%;'></i></button>";
+                             },
+                             "autoWidth": true
+                         },
+         //               {
+         //                   "data": null,
+         // "render": function ( data, type, row ) {
+         // var BtnReader='<a target="_blank" class="btn btn-success btn-sm" role="button" href="view.php?id=' + data + '"> Read' + "</a>" ;
+         // var BtnDelete = '<a target="_blank" class="btn btn-danger btn-sm" role="button" href="delete.php?id=' + data + '"> Delete ' + ' </a>';
+
+         // var DropDownAction= '<div class="btn-group">'
+         // +
+         // '<button class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown" type="button" aria-expanded="false">'
+         // +
+         //  '<i class="fa fa-gear"></i><span class="caret"></span>'; '</div>' //+ '</button><ul class="dropdown-menu" role="menu">';
+         // // DropDownAction += '<li>' + BtnReader+ '</li>';
+         // // DropDownAction += '<li>' + BtnDelete + '</li>';
+         // // DropDownAction +=' </ul>';'</div>';
+         // return  DropDownAction;
+         //  } }
+         {
+
+                   "data": null ,
+                    "render": function (data,type,row) {
+                         var id = row.id;
+                        return "<button class='btn btn-info' style='font-size:10px;height:20px;width:75%;' onclick='EditProduct(" + data.id + ")'>"+data.status+ " </button>";
+                    },
+                       "autoWidth": true
+
+         }
+                     ],
+
+
+
+                 "rowCallback": function( row, data ) {       
+                 if (data["status"] == 1) {
+                $(row).css({"background-color":"#FFDCDC"});
+              //$(row).addClass( 'danger' )
+                }else{
+                $(row).css({"background-color":"#AACCDC"});
+              }
+                 return row;
+             },
+
+
+
+              //* Русификация таблицы *//                
+                 "oLanguage": {
+               "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Русский.json",
+
+                 "sProcessing":   "Подождите...",
+                 "sLengthMenu":   "Показать _MENU_ записей",
+                 "sZeroRecords":  "Записи отсутствуют.",
+                 "sInfo":         "Записи с _START_ до _END_ из _TOTAL_ записей",
+                 "sInfoEmpty":    "Записи с 0 до 0 из 0 записей",
+                 "sInfoFiltered": "(отфильтровано из _MAX_ записей)",
+                 "sInfoPostFix":  "",
+                 "sSearch":       "Поиск:",
+                 "sUrl":          "",
+                 "oPaginate": {
+                     "sFirst": "Первая",
+                     "sPrevious": "Предыдущая",
+                     "sNext": "Следующая",
+                     "sLast": "Последняя"
+                 },
+                 "oAria": {
+                     "sSortAscending":  ": активировать для сортировки столбца по возрастанию",
+                     "sSortDescending": ": активировать для сортировки столбцов по убыванию"
+                 }      
+             },
+             //---------------------------------------------------------------------------------------//   
+         });
+             //*  Колонка ID невидимая *//
+               var dt = $('#productTable').DataTable();
+               dt.column(0).visible(true);
+                 });
+              //-------------------------------------------------------------------------------------//  
+
+              //* Function to delete a product *//
+             function DeleteProduct(id) {
+                 if (confirm('Are you sure you want to delete this product?')) {
+                     $.ajax({
+                         type: "POST",
+                         url: '/Product/DeleteProduct',
+                         data: { id: id },
+                         success: function (data) {
+                             if (data.success) {
+                                 $('#productTable').DataTable().ajax.reload();
+                             } else {
+                                 alert('Failed to delete product.');
+                             }
+                         }
+                     });
+                 }
+             }
+             //-------------------------------------------------------------------------------------//
+            
+             //* Function to edit a product *//
+              function EditProduct(id) {
+                    window.location.href="/Product/Edit/"+id;
+              }
+              //------------------------------------------------------------------------------------//
+
+               //* Function to reformers a product *//
+               function RefProduct(id) {
+                   window.location.href="/Product/Reformers/"+id;
+               }
+               //-----------------------------------------------------------------------------------//
+              
+               //* Редактирование по двойному клику *//
+                $('#productTable').on( 'dblclick', 'tr', function (){
+                  var tr =$(this).closest('tr');
+                  var row = $(tr).children('td')[0];
+                  //alert($(row).text());
+                  self.EditProduct($(row).text());
+               });
+               //-----------------------------------------------------------------------------------//
+
+
+
+    </script>
+}
+
+

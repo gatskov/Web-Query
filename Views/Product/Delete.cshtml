@@ -1,0 +1,21 @@
+﻿ @model WebQuery.Models.Product
+@{
+    ViewData["Title"] = "Delete";
+}
+ function DeleteProduct(id) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                $.ajax({
+                    type: "POST",
+                    url: '/Product/DeleteProduct',
+                    data: { id: id },
+                    success: function (data) {
+                        if (data.success) {
+                            $('#productTable').DataTable().ajax.reload();
+                        } else {
+                            alert('Failed to delete product.');
+                        }
+                    }
+                });
+            }
+        }
+
